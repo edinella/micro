@@ -2,9 +2,31 @@
 
 This repo demonstrates interoperability of a small microservices graph.
 
-## Development
+## Running locally
 
-In case of editing `definitions.proto`, run `make` for propagating changes to services.
+Choose one of this methods:
+
+#### Kubernetes with Tilt (recommended)
+
+Follow [Tilt](https://docs.tilt.dev/install.html) installation instructions, then run:
+
+- Start: `tilt up`
+- Stop: `tilt down`
+
+#### Docker Compose
+
+If you prefer not using Tilt, just install [Docker Compose](https://docs.docker.com/compose/install/) and you are ready to go:
+
+- Start: `docker-compose up --build`
+- Stop: `docker-compose down`
+
+## Making changes
+
+First of all, thanks for contributing.
+
+### Building
+
+In case of editing `definitions.proto`, ensure you have [Docker](https://docs.docker.com/) installed, then run `make` for propagating changes to services.
 
 ### Versioning
 
@@ -14,13 +36,13 @@ See [standard-version](https://github.com/conventional-changelog/standard-versio
 
 Run `npx standard-version` for automatic changelog generation and version numbering when releasing a version.
 
-### Architetural Decisions
+## Architetural Decisions
 
 [This log](./docs/adr/index.md) lists the architectural decisions.
 
 Run `npx adr-log -i -d ./` after documenting a decision, for automatic indexing.
 
-### Issues
+## Issues reporting
 
 Issues can be reported at https://github.com/edinella/micro/issues.
 
