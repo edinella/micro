@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+
+  discount:
+    image: micro/discount
+    build: ./services/discount/
+    restart: on-failure
+
+  user:
+    image: micro/user
+    build: ./services/user/
+    restart: on-failure
+    ports:
+      # inspector port
+      - "8181:8181"
+
+  product:
+    image: micro/product
+    build: ./services/product/
+    restart: on-failure
