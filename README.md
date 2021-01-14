@@ -26,7 +26,15 @@ First of all, thanks for contributing.
 
 ### Building
 
-In case of editing `definitions.proto`, ensure you have [Docker](https://docs.docker.com/) installed, then run `make` for propagating changes to services.
+In case of editing `.proto` files, you will need to rebuild and propagate stub codes to services.
+
+Ensure you have this dependencies installed, then run `make` for propagating changes to services.
+
+Dependencies:
+- [NPM](https://www.npmjs.com/get-npm)
+- [GO](https://golang.org/doc/install)
+- [protoc](http://google.github.io/proto-lens/installing-protoc.html)
+- [buf](https://docs.buf.build/installation/)
 
 ### Versioning
 

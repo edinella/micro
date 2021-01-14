@@ -6,6 +6,12 @@
     "sourceMap": true,
     "outDir": "dist"
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "gen", "**/*.spec.ts"]
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "gen",
+    "src/**/*.spec.ts"
+  ]
 }

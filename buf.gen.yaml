@@ -1,0 +1,28 @@
+version: v1beta1
+
+plugins:
+
+  # NodeJS
+  - name: js
+    out: gen/nodejs
+    opt: import_style=commonjs,binary
+
+  - name: grpc
+    out: gen/nodejs
+    opt: grpc_js
+    path: grpc_tools_node_protoc_plugin
+
+  # Typescript
+  - name: ts
+    out: gen/typescript
+    opt: grpc_js
+    path: protoc-gen-ts
+
+  # Go
+  - name: go
+    out: gen/go
+    opt: paths=source_relative
+
+  - name: go-grpc
+    out: gen/go
+    opt: paths=source_relative,require_unimplemented_servers=false

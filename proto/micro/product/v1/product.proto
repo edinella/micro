@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package micro.product.v1;
+
+option go_package = "github.com/edinella/micro/product;product";
+
+message GetProductListRequest {
+  string user_id = 1;
+}
+message GetProductRequest {
+  string product_id = 1;
+  string user_id = 2;
+}
+message GetProductResponse {
+  message Discount {
+    float percentage = 1;
+    int32 value_in_cents = 2;
+  }
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  int32 price_in_cents = 4;
+  Discount discount = 5;
+}
+message GetProductListResponse {
+  message Discount {
+    float percentage = 1;
+    int32 value_in_cents = 2;
+  }
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  int32 price_in_cents = 4;
+  Discount discount = 5;
+}
+service ProductService {
+  rpc GetProduct (GetProductRequest) returns (GetProductResponse);
+  rpc GetProductList (GetProductListRequest) returns (stream GetProductListResponse);
+}

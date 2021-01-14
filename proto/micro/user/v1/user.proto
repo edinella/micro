@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package micro.user.v1;
+
+option go_package = "github.com/edinella/micro/user;user";
+
+message GetUserRequest {
+  string user_id = 1;
+}
+message GetUserResponse {
+  message Date {
+    int32 year = 1;
+    int32 month = 2;
+    int32 day = 3;
+  }
+  string id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  Date date_of_birth = 4;
+}
+service UserService {
+  rpc GetUser (GetUserRequest) returns (GetUserResponse);
+}

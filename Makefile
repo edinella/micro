@@ -1,18 +1,53 @@
-all: install gen-all
+.PHONY: update-services
+update-services: update-discount update-product update-user
 
-gen-all: gen-user gen-discount gen-product
+.PHONY: update-discount
+update-discount: build
+	cp -r ./gen/nodejs ./services/discount/gen
 
-gen-user:
-	docker run -v `pwd`:/defs namely/protoc-all -f ./definitions.proto --lint -l node --with-typescript -o services/user/gen
+.PHONY: update-product
+update-product: build
+	cp -r ./gen/go ./services/product/gen
 
-gen-discount:
-	docker run -v `pwd`:/defs namely/protoc-all -f ./definitions.proto --lint -l node -o services/discount/gen
+.PHONY: update-user
+update-user: build
+	cp -r ./gen/typescript ./services/user/gen
 
-gen-product:
-	docker run -v `pwd`:/defs namely/protoc-all -f ./definitions.proto --lint -l go -o services/product/gen --go-source-relative
+.PHONY: build
+build: generate
+	buf build -o proto/buf-image.json
 
-install: clean
-	docker image inspect namely/protoc-all > /dev/null || docker pull namely/protoc-all
+.PHONY: generate
+generate: install-deps clean lint check
+	buf generate
 
+.PHONY: clean
 clean:
-	rm -rf ./services/{user,discount,product}/gen
+	rm -rf ./gen ./services/{user,discount,product}/gen
+
+.PHONY: lint
+lint:
+	buf lint
+
+.PHONY: check
+check:
+	buf breaking --against proto/buf-image.json
+
+.PHONY: install-deps
+install-deps: grpc_tools_node_protoc_plugin protoc-gen-ts protoc-gen-go protoc-gen-go-grpc
+
+.PHONY: grpc_tools_node_protoc_plugin
+grpc_tools_node_protoc_plugin:
+	which grpc_tools_node_protoc_plugin > /dev/null || npm i -g grpc-tools@1.10.0
+
+.PHONY: protoc-gen-ts
+protoc-gen-ts:
+	which protoc-gen-ts > /dev/null || npm i -g grpc_tools_node_protoc_ts@5.1.0
+
+.PHONY: protoc-gen-go
+protoc-gen-go:
+	go get google.golang.org/protobuf/cmd/protoc-gen-go
+
+.PHONY: protoc-gen-go-grpc
+protoc-gen-go-grpc:
+	go get google.golang.org/grpc/cmd/protoc-gen-go-grpc

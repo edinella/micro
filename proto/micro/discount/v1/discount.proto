@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package micro.discount.v1;
+
+option go_package = "github.com/edinella/micro/discount;discount";
+
+message GetDiscountRequest {
+  string product_id = 1;
+  string user_id = 2;
+}
+message GetDiscountResponse {
+  float percentage = 1;
+  int32 value_in_cents = 2;
+}
+service DiscountService {
+  rpc GetDiscount (GetDiscountRequest) returns (GetDiscountResponse);
+}
