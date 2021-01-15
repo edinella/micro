@@ -1,19 +1,19 @@
 .DEFAULT_GOAL:=help
 
 ##@ Services
-.PHONY: update-all
-update-all: discount product user ## Generate stubs, and update them on all services.
+.PHONY: all
+all: discount product user ## Generate stubs, and update them on all services.
 
-.PHONY: update-discount
-update-discount: generate ## Generate stubs, and update them on "discount" service.
+.PHONY: discount
+discount: generate ## Generate stubs, and update them on "discount" service.
 	cp -r ./gen/nodejs ./services/discount/gen
 
-.PHONY: update-product
-update-product: generate ## Generate stubs, and update them on "product" service.
+.PHONY: product
+product: generate ## Generate stubs, and update them on "product" service.
 	cp -r ./gen/go ./services/product/gen
 
-.PHONY: update-user
-update-user: generate ## Generate stubs, and update them on "user" service.
+.PHONY: user
+user: generate ## Generate stubs, and update them on "user" service.
 	cp -r ./gen/typescript ./services/user/gen
 
 ##@ Stubs

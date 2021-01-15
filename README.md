@@ -38,7 +38,7 @@ Ensure you have this dependencies installed:
 - [protoc](http://google.github.io/proto-lens/installing-protoc.html)
 - [buf](https://docs.buf.build/installation/)
 
-Then run `make update-all`.
+Then run `make all`.
 
 ### Versioning
 
