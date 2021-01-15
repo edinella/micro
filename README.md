@@ -6,19 +6,23 @@ This repo demonstrates interoperability of a small microservices graph.
 
 Choose one of this methods:
 
-#### Kubernetes with Tilt (recommended)
+<details open>
+  <summary><strong>Kubernetes with Tilt (recommended)</strong></summary>
 
-Follow [Tilt](https://docs.tilt.dev/install.html) installation instructions, then run:
+  Follow [Tilt](https://docs.tilt.dev/install.html) installation instructions, then run:
 
-- Start: `tilt up`
-- Stop: `tilt down`
+  - Start: `tilt up`
+  - Stop: `tilt down`
+</details>
 
-#### Docker Compose
+<details>
+  <summary><strong>Docker Compose</strong></summary>
 
-If you prefer not using Tilt, just install [Docker Compose](https://docs.docker.com/compose/install/) and you are ready to go:
+  If you prefer not using Tilt, just install [Docker Compose](https://docs.docker.com/compose/install/) and you are ready to go:
 
-- Start: `docker-compose up --build`
-- Stop: `docker-compose down`
+  - Start: `docker-compose up --build`
+  - Stop: `docker-compose down`
+</details>
 
 ## Making changes
 
@@ -26,15 +30,15 @@ First of all, thanks for contributing.
 
 ### Building
 
-In case of editing `.proto` files, you will need to rebuild and propagate stub codes to services.
+In case of editing `.proto` files, you will need to rebuild and propagate stub codes to services. Don't worry, it's easy.
 
-Ensure you have this dependencies installed, then run `make` for propagating changes to services.
-
-Dependencies:
+Ensure you have this dependencies installed:
 - [NPM](https://www.npmjs.com/get-npm)
 - [GO](https://golang.org/doc/install)
 - [protoc](http://google.github.io/proto-lens/installing-protoc.html)
 - [buf](https://docs.buf.build/installation/)
+
+Then run `make update-all`.
 
 ### Versioning
 
